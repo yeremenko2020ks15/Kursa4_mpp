@@ -14,11 +14,20 @@ class ProductsTest < ApplicationSystemTestCase
     visit products_url
     click_on "New Product"
 
-    fill_in "Sku", with: @product.SKU
-    fill_in "Category", with: @product.category_id
-    fill_in "Desc", with: @product.desc
+    fill_in "Skun", with: @product.SKUN
+    check "Accessories" if @product.accessories
+    fill_in "Alc endurance", with: @product.alc_endurance
+    fill_in "Alc strength", with: @product.alc_strength
+    fill_in "Description", with: @product.description
+    fill_in "Pr brand", with: @product.pr_brand_id
+    fill_in "Pr category", with: @product.pr_category_id
+    fill_in "Pr classification", with: @product.pr_classification_id
+    fill_in "Pr color", with: @product.pr_color_id
+    fill_in "Pr country", with: @product.pr_country_id
     fill_in "Pr name", with: @product.pr_name
-    fill_in "Price to client", with: @product.price_to_client
+    fill_in "Pr sub category", with: @product.pr_sub_category_id
+    fill_in "Pr sweetness", with: @product.pr_sweetness_id
+    fill_in "Price for client", with: @product.price_for_client
     click_on "Create Product"
 
     assert_text "Product was successfully created"
@@ -29,11 +38,20 @@ class ProductsTest < ApplicationSystemTestCase
     visit products_url
     click_on "Edit", match: :first
 
-    fill_in "Sku", with: @product.SKU
-    fill_in "Category", with: @product.category_id
-    fill_in "Desc", with: @product.desc
+    fill_in "Skun", with: @product.SKUN
+    check "Accessories" if @product.accessories
+    fill_in "Alc endurance", with: @product.alc_endurance
+    fill_in "Alc strength", with: @product.alc_strength
+    fill_in "Description", with: @product.description
+    fill_in "Pr brand", with: @product.pr_brand_id
+    fill_in "Pr category", with: @product.pr_category_id
+    fill_in "Pr classification", with: @product.pr_classification_id
+    fill_in "Pr color", with: @product.pr_color_id
+    fill_in "Pr country", with: @product.pr_country_id
     fill_in "Pr name", with: @product.pr_name
-    fill_in "Price to client", with: @product.price_to_client
+    fill_in "Pr sub category", with: @product.pr_sub_category_id
+    fill_in "Pr sweetness", with: @product.pr_sweetness_id
+    fill_in "Price for client", with: @product.price_for_client
     click_on "Update Product"
 
     assert_text "Product was successfully updated"

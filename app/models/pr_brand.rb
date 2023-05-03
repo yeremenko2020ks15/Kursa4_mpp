@@ -1,0 +1,2 @@
+class PrBrand < ApplicationRecord
+end

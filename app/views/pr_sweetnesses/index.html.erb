@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pr Sweetnesses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sweetness</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pr_sweetnesses.each do |pr_sweetness| %>
+      <tr>
+        <td><%= pr_sweetness.sweetness %></td>
+        <td><%= link_to 'Show', pr_sweetness %></td>
+        <td><%= link_to 'Edit', edit_pr_sweetness_path(pr_sweetness) %></td>
+        <td><%= link_to 'Destroy', pr_sweetness, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pr Sweetness', new_pr_sweetness_path %>

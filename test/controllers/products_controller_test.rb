@@ -17,7 +17,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create product" do
     assert_difference('Product.count') do
-      post products_url, params: { product: { SKU: @product.SKU, category_id: @product.category_id, desc: @product.desc, pr_name: @product.pr_name, price_to_client: @product.price_to_client } }
+      post products_url, params: { product: { SKUN: @product.SKUN, accessories: @product.accessories, alc_endurance: @product.alc_endurance, alc_strength: @product.alc_strength, description: @product.description, pr_brand_id: @product.pr_brand_id, pr_category_id: @product.pr_category_id, pr_classification_id: @product.pr_classification_id, pr_color_id: @product.pr_color_id, pr_country_id: @product.pr_country_id, pr_name: @product.pr_name, pr_sub_category_id: @product.pr_sub_category_id, pr_sweetness_id: @product.pr_sweetness_id, price_for_client: @product.price_for_client } }
     end
 
     assert_redirected_to product_url(Product.last)
@@ -34,7 +34,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: { SKU: @product.SKU, category_id: @product.category_id, desc: @product.desc, pr_name: @product.pr_name, price_to_client: @product.price_to_client } }
+    patch product_url(@product), params: { product: { SKUN: @product.SKUN, accessories: @product.accessories, alc_endurance: @product.alc_endurance, alc_strength: @product.alc_strength, description: @product.description, pr_brand_id: @product.pr_brand_id, pr_category_id: @product.pr_category_id, pr_classification_id: @product.pr_classification_id, pr_color_id: @product.pr_color_id, pr_country_id: @product.pr_country_id, pr_name: @product.pr_name, pr_sub_category_id: @product.pr_sub_category_id, pr_sweetness_id: @product.pr_sweetness_id, price_for_client: @product.price_for_client } }
     assert_redirected_to product_url(@product)
   end
 

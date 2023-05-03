@@ -1,0 +1,2 @@
+module PrClassificationsHelper
+end

@@ -1,0 +1,2 @@
+class PrCategory < ApplicationRecord
+end

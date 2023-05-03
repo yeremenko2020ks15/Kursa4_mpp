@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pr Countries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pr_countries.each do |pr_country| %>
+      <tr>
+        <td><%= pr_country.country %></td>
+        <td><%= link_to 'Show', pr_country %></td>
+        <td><%= link_to 'Edit', edit_pr_country_path(pr_country) %></td>
+        <td><%= link_to 'Destroy', pr_country, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pr Country', new_pr_country_path %>

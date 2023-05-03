@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pr Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pr_categories.each do |pr_category| %>
+      <tr>
+        <td><%= pr_category.category %></td>
+        <td><%= link_to 'Show', pr_category %></td>
+        <td><%= link_to 'Edit', edit_pr_category_path(pr_category) %></td>
+        <td><%= link_to 'Destroy', pr_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pr Category', new_pr_category_path %>

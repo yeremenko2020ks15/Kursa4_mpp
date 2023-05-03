@@ -6,10 +6,19 @@
   <thead>
     <tr>
       <th>Pr name</th>
-      <th>Desc</th>
-      <th>Sku</th>
-      <th>Category</th>
-      <th>Price to client</th>
+      <th>Price for client</th>
+      <th>Description</th>
+      <th>Skun</th>
+      <th>Alc strength</th>
+      <th>Alc endurance</th>
+      <th>Pr category</th>
+      <th>Pr sub category</th>
+      <th>Pr brand</th>
+      <th>Pr country</th>
+      <th>Pr classification</th>
+      <th>Pr color</th>
+      <th>Pr sweetness</th>
+      <th>Accessories</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,10 +27,19 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.pr_name %></td>
-        <td><%= product.desc %></td>
-        <td><%= product.SKU %></td>
-        <td><%= product.category_id %></td>
-        <td><%= product.price_to_client %></td>
+        <td><%= product.price_for_client %></td>
+        <td><%= product.description %></td>
+        <td><%= product.SKUN %></td>
+        <td><%= product.alc_strength %></td>
+        <td><%= product.alc_endurance %></td>
+        <td><%= product.pr_category_id %></td>
+        <td><%= product.pr_sub_category_id %></td>
+        <td><%= product.pr_brand_id %></td>
+        <td><%= product.pr_country_id %></td>
+        <td><%= product.pr_classification_id %></td>
+        <td><%= product.pr_color_id %></td>
+        <td><%= product.pr_sweetness_id %></td>
+        <td><%= product.accessories %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>

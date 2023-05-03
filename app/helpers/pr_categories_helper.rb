@@ -1,0 +1,2 @@
+module PrCategoriesHelper
+end

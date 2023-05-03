@@ -1,0 +1,22 @@
+<%= form_with(model: pr_color) do |form| %>
+  <% if pr_color.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pr_color.errors.count, "error") %> prohibited this pr_color from being saved:</h2>
+
+      <ul>
+        <% pr_color.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

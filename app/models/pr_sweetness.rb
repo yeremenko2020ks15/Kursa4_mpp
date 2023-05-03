@@ -1,0 +1,2 @@
+class PrSweetness < ApplicationRecord
+end

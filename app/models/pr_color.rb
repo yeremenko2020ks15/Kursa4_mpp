@@ -1,0 +1,2 @@
+class PrColor < ApplicationRecord
+end

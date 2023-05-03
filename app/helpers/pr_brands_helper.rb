@@ -1,0 +1,2 @@
+module PrBrandsHelper
+end

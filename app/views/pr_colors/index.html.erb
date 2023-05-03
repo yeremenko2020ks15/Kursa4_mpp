@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pr Colors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pr_colors.each do |pr_color| %>
+      <tr>
+        <td><%= pr_color.color %></td>
+        <td><%= link_to 'Show', pr_color %></td>
+        <td><%= link_to 'Edit', edit_pr_color_path(pr_color) %></td>
+        <td><%= link_to 'Destroy', pr_color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pr Color', new_pr_color_path %>

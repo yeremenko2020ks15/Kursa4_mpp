@@ -1,0 +1,2 @@
+class PrCountry < ApplicationRecord
+end
