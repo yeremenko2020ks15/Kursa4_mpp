@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :comments
+  resources :order_details
+  resources :payment_types
+  resources :user_addresses
+  resources :user_payments
+  resources :cart_items
+  resources :shopping_sessions
+  resources :users
   resources :product_inventories
   resources :pr_sweetnesses
   resources :pr_colors

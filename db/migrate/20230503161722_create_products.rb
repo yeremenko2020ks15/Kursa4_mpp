@@ -5,6 +5,7 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.float :price_for_client
       t.string :description
       t.string :SKUN
+      t.integer :quantity
       t.integer :alc_strength
       t.integer :alc_endurance
       t.references :pr_category, null: true, foreign_key: true
