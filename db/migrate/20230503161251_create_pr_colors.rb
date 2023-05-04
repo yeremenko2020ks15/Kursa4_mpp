@@ -3,7 +3,6 @@ class CreatePrColors < ActiveRecord::Migration[6.1]
     create_table :pr_colors do |t|
       t.string :color
 
-      t.timestamps
     end
   end
 end

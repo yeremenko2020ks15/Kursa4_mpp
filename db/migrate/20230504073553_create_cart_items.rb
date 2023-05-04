@@ -6,7 +6,6 @@ class CreateCartItems < ActiveRecord::Migration[6.1]
       t.integer :quantity
       t.float :total
 
-      t.timestamps
     end
   end
 end

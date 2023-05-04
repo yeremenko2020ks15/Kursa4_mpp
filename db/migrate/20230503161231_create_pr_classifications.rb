@@ -3,7 +3,6 @@ class CreatePrClassifications < ActiveRecord::Migration[6.1]
     create_table :pr_classifications do |t|
       t.string :classification
 
-      t.timestamps
     end
   end
 end

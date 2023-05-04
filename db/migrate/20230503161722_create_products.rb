@@ -15,7 +15,6 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.references :pr_classification, null: true, foreign_key: true
       t.references :pr_color, null: true, foreign_key: true
       t.references :pr_sweetness, null: true, foreign_key: true
-      t.boolean :accessories
 
       t.timestamps
     end

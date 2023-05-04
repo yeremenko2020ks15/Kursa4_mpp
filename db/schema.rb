@@ -20,14 +20,13 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
     t.bigint "product_id", null: false
     t.integer "quantity"
     t.float "total"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_cart_items_on_product_id"
     t.index ["shopping_session_id"], name: "index_cart_items_on_shopping_session_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "product_id", null: false
+    t.float "rating"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -50,50 +49,34 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
 
   create_table "payment_types", force: :cascade do |t|
     t.string "type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pr_brands", force: :cascade do |t|
     t.string "brand"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pr_categories", force: :cascade do |t|
     t.string "category"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pr_classifications", force: :cascade do |t|
     t.string "classification"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pr_colors", force: :cascade do |t|
     t.string "color"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pr_countries", force: :cascade do |t|
     t.string "country"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pr_sub_categories", force: :cascade do |t|
     t.string "sub_category"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pr_sweetnesses", force: :cascade do |t|
     t.string "sweetness"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "product_inventories", force: :cascade do |t|
@@ -120,7 +103,6 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
     t.bigint "pr_classification_id"
     t.bigint "pr_color_id"
     t.bigint "pr_sweetness_id"
-    t.boolean "accessories"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pr_brand_id"], name: "index_products_on_pr_brand_id"
