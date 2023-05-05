@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many_attached :images
   belongs_to :pr_category, optional: true
   belongs_to :pr_sub_category, optional: true
   belongs_to :pr_brand, optional: true

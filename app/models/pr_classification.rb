@@ -1,2 +1,0 @@
-class PrClassification < ApplicationRecord
-end

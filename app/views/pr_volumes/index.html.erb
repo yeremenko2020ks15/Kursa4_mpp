@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pr Volumes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Volume</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pr_volumes.each do |pr_volume| %>
+      <tr>
+        <td><%= pr_volume.volume %></td>
+        <td><%= link_to 'Show', pr_volume %></td>
+        <td><%= link_to 'Edit', edit_pr_volume_path(pr_volume) %></td>
+        <td><%= link_to 'Destroy', pr_volume, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pr Volume', new_pr_volume_path %>

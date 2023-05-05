@@ -1,0 +1,2 @@
+class PrAlcohol < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class PrEndurance < ApplicationRecord
+end

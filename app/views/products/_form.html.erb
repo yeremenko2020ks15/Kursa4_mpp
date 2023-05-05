@@ -22,6 +22,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+
+  <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
@@ -37,13 +42,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :alc_strength %>
-    <%= form.number_field :alc_strength %>
+    <%= form.label :pr_volume_id %>
+    <%= form.text_field :pr_volume_id %>
   </div>
 
   <div class="field">
-    <%= form.label :alc_endurance %>
-    <%= form.number_field :alc_endurance %>
+    <%= form.label :pr_alcohol_id %>
+    <%= form.text_field :pr_alcohol_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pr_endurance_id %>
+    <%= form.text_field :pr_endurance_id %>
   </div>
 
   <div class="field">
@@ -67,11 +77,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :pr_classification_id %>
-    <%= form.text_field :pr_classification_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :pr_color_id %>
     <%= form.text_field :pr_color_id %>
   </div>
@@ -79,11 +84,6 @@
   <div class="field">
     <%= form.label :pr_sweetness_id %>
     <%= form.text_field :pr_sweetness_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :accessories %>
-    <%= form.check_box :accessories %>
   </div>
 
   <div class="actions">

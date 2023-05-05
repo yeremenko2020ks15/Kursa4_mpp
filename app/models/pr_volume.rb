@@ -1,0 +1,2 @@
+class PrVolume < ApplicationRecord
+end

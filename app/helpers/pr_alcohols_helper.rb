@@ -1,0 +1,2 @@
+module PrAlcoholsHelper
+end

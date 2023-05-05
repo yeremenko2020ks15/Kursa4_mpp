@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :discounts
+  resources :pr_alcohols
+  resources :pr_volumes
+  resources :pr_endurances
   resources :comments
   resources :order_details
   resources :payment_types
