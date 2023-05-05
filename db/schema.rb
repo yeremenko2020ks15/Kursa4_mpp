@@ -25,12 +25,14 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.float "rating"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -155,6 +157,7 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
   add_foreign_key "cart_items", "products"
   add_foreign_key "cart_items", "shopping_sessions"
   add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "order_details", "cart_items"
   add_foreign_key "order_details", "payment_types"
   add_foreign_key "order_details", "users"
