@@ -7,4 +7,6 @@ class Product < ApplicationRecord
   belongs_to :pr_classification, optional: true
   belongs_to :pr_color, optional: true
   belongs_to :pr_sweetness, optional: true
+  has_many :orderables
+  has_many :carts, through: :orderables
 end
