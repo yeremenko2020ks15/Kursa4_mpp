@@ -2,8 +2,8 @@ class CreateProducts < ActiveRecord::Migration[6.1]
   def change
     create_table :products do |t|
       t.string :pr_name
-      t.float :price_for_client
-      t.string :description
+      t.decimal :price_for_client, precision: 5, scale: 2
+      t.text :description
       t.string :SKUN
       t.integer :quantity
       t.references :pr_volume, null: true, foreign_key: true

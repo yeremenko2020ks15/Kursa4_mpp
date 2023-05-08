@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ajax/:action', to: 'ajax#:action', :defaults => { :format => 'json' }
+  devise_for :users
   resources :discounts
   resources :pr_alcohols
   resources :pr_volumes
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
   resources :user_payments
   resources :cart_items
   resources :shopping_sessions
-  resources :users
+
   resources :product_inventories
   resources :pr_sweetnesses
   resources :pr_colors
@@ -20,6 +22,9 @@ Rails.application.routes.draw do
   resources :pr_sub_categories
   resources :pr_categories
   resources :product_categories
+  get 'cart', to: 'carts#show'
+  post 'carts/add'
+  post 'carts/remove'
   resources :products
   root 'home#index'
   # get 'app/home/index'
