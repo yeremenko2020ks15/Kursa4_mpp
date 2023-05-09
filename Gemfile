@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+gem 'activeadmin'
 
 gem 'turbo-rails'
 
