@@ -18,7 +18,7 @@
   <%= link_to "Order_details", order_details_path %>
   <%= link_to "Comments", comments_path %>
 </div>
-<div style="display:flex;color: #730E15; width: auto; height: 100px;">
+<div style="display:flex;color: #730E15; width: auto; height: 33px;">
   <% if user_signed_in? %>
     <div> Welcome <%= current_user.email %> </div>
     <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
@@ -27,6 +27,62 @@
   <% end %>
 </div>
 <div>
-<%=  %>
+  <table>
+    <thead>
+    <tr>
+      <th>Pr name</th>
+      <th>Price for client</th>
+      <th>Images</th>
+      <th>Description</th>
+      <th>Rating</th>
+      <th>Comments</th>
+    </tr>
+    </thead>
 
+    <tbody>
+    <% @products.each do |product| %>
+        <tr>
+          <td><%= product.pr_name %></td>
+          <td><%= product.price_for_client %></td>
+          <td>
+            <% product.images.each do |image| %>
+              <%= link_to image_tag(image, style:"width:100px; height:130px"), image %>
+            <% end %>
+          </td>
+          <td><%= product.description %></td>
+
+            <%= count = 0 %>
+            <%= rating_sum = 0 %>
+            <% @comments.each do |comment| %>
+              <% if comment.product_id == product.id %>
+                <%= count+=1 %>
+                <%= rating_sum += comment.rating %>
+              <% end %>
+            <% end %>
+
+          <td>
+            <% if count > 0 %>
+              <%= ((rating_sum/count).ceil(2)) %>
+            <% else %>
+              0
+            <% end %></td>
+          <td>
+            <% @comments.each do |comment| %>
+                <% if comment.product_id == product.id %>
+                  <br>
+                <%= comment.user_id.to_s + ': ' %>
+                <%= comment.comment + ',' + comment.rating.to_s %>
+                <% end %>
+              <% end %></td>
+
+          <td><%= form_with(url: carts_add_path) do |f| %>
+              <%= f.hidden_field :id, value: product.id %>
+              <%= f.number_field :quantity, value: 0, min: 1 %>
+              <%= f.submit "Add To Cart" %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get 'ajax/:action', to: 'ajax#:action', :defaults => { :format => 'json' }
   devise_for :users
   resources :discounts
