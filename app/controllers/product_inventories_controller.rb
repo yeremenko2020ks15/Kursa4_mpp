@@ -67,4 +67,6 @@ class ProductInventoriesController < ApplicationController
     def product_inventory_params
       params.require(:product_inventory).permit(:product_id, :price, :quantity)
     end
+
+
 end
