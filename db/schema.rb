@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_163212) do
   end
 
   create_table "payment_types", force: :cascade do |t|
-    t.string "type"
+    t.string "p_type"
   end
 
   create_table "pr_alcohols", force: :cascade do |t|
