@@ -2,9 +2,9 @@ class CartsController < ApplicationController
   # before_action :set_cart, only: %i[ show edit update destroy ]
   respond_to :html, :json
   # GET /carts or /carts.json
-  # def index
-  #   @carts = Cart.all
-  # end
+  def index
+    @carts = Cart.all
+  end
 
   # GET /carts/1 or /carts/1.json
   def show
@@ -17,37 +17,48 @@ class CartsController < ApplicationController
   # end
 
   def add
-    @product = Product.find_by(id: params[:id])
-    quantity = params[:quantity].to_i
-    current_orderable = @cart.orderables.find_by(product_id: @product.id)
-    if current_orderable && quantity > 0
-      current_orderable.update(quantity:)
-    elsif quantity <= 0
-      current_orderable.destroy
+    if user_signed_in?
+      @product = Product.find_by(id: params[:id])
+      quantity = params[:quantity].to_i
+      current_orderable = @cart.orderables.find_by(product_id: @product.id)
+      if current_orderable && quantity > 0
+        current_orderable.update(quantity:)
+      elsif quantity <= 0
+        current_orderable.destroy
+      else
+        @cart.orderables.create(product: @product, quantity:)
+      end
     else
-      @cart.orderables.create(product: @product, quantity:)
+      puts '==========================================================================================================='
+      puts '==========================================================================================================='
+      puts '==========================================================================================================='
+      puts '==========================================================================================================='
+      puts '==========================================================================================================='
+      puts '==========================================================================================================='
     end
 
-    # respond_to do |format|
-    #   format.turbo_stream do
-    #     render turbo_stream: [turbo_stream.replace('cart',
-    #                                                partial: 'cart/cart',
-    #                                                locals: { cart: @cart }),
-    #                           turbo_stream.replace(@product)]
-    #   end
-    # end
+    respond_to do |format|
+      format.html do
+        redirect_to '/'
+      end
+      format.json {render json: [json.replace('cart',
+                                                   partial: 'cart/cart',
+                                                   locals: { cart: @cart }),
+                                 json.replace(@product)]}
+    end
   end
-  #
+
   def remove
     Orderable.find_by(id: params[:id]).destroy
-  #   respond_to do |format|
-  #     format.turbo_stream do
-  #       render turbo_stream: turbo_stream.replace('cart',
-  #                                                 partial: 'cart/cart',
-  #                                                 locals: { cart: @cart })
-  #     end
-  #   end
-   end
+    respond_to do |format|
+      format.html do
+        redirect_to '/'
+      end
+      format.json {render json: json.replace('cart',
+                                              partial: 'cart/cart',
+                                              locals: { cart: @cart })}
+    end
+  end
 
   # GET /carts/1/edit
   # def edit

@@ -71,7 +71,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_163212) do
 
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id"
-    t.decimal "total", precision: 7, scale: 2
+    t.decimal "total", precision: 12, scale: 2
+    t.boolean "done"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -115,8 +116,6 @@ ActiveRecord::Schema.define(version: 2023_05_08_163212) do
     t.bigint "product_id", null: false
     t.bigint "cart_id", null: false
     t.integer "quantity"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_orderables_on_cart_id"
     t.index ["product_id"], name: "index_orderables_on_product_id"
   end
@@ -163,7 +162,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_163212) do
 
   create_table "product_inventories", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.decimal "price", precision: 5, scale: 2
+    t.decimal "price", precision: 8, scale: 2
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -172,7 +171,7 @@ ActiveRecord::Schema.define(version: 2023_05_08_163212) do
 
   create_table "products", force: :cascade do |t|
     t.string "pr_name"
-    t.decimal "price_for_client", precision: 5, scale: 2
+    t.decimal "price_for_client", precision: 8, scale: 2
     t.text "description"
     t.string "SKUN"
     t.integer "quantity"

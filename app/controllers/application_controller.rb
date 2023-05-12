@@ -1,4 +1,9 @@
+require "application_responder"
+
 class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html
+
   before_action :set_render_cart
   before_action :initialize_cart
   respond_to :html, :json
@@ -10,20 +15,14 @@ class ApplicationController < ActionController::Base
   def initialize_cart
     if user_signed_in?
       id = current_user.id
-    else
-      id = 1
-    end
 
-    if id != 1
-      @cart ||= Cart.find_by(user_id: id)
-    else
-      @cart ||= Cart.find_by(id: session[:cart_id])
-    end
+      @cart ||= Cart.find_by(user_id: id, done: false)
 
       if @cart.nil?
-        @cart = Cart.create(user_id: id)
+        @cart = Cart.create(user_id: id, done: false)
         session[:cart_id] = @cart.id
       end
+    end
   end
 
 end
