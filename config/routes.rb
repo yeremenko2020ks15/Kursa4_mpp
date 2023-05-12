@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'cart', to: 'carts#show'
   post 'carts/add'
   post 'carts/remove'
+  post 'order_details/create_order'
   resources :products
   root 'home#index'
   # get 'app/home/index'

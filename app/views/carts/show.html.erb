@@ -6,6 +6,18 @@
 <% end %>
 <p>Your total is $<%= @cart.total %> </p>
 
+<h1>All orders</h1>
+<% Cart.all.each do |cart| %>
+  <% if cart.user_id == current_user.id %>
+    <% cart.orderables.each do |orderable| %>
+      <% product = orderable.product %>
+      <p><%= product.pr_name %> * <%= orderable.quantity %> = $<%= product.price_for_client * orderable.quantity %></p>
+    <% end %>
+    <p>Your total is $<%= cart.total %> </p>
+  <% end %>
+<% end %>
+
+
 <!--<p>-->
 <!--  <strong>User:</strong>-->
   <%#= @cart.user_id %>
