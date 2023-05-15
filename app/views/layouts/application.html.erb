@@ -11,6 +11,16 @@
   </head>
 
   <body>
-    <%= yield %>
+  <%# if notice %>
+  <div id="notice_wrapper">
+    <p class="notice"><%= notice %></p>
+  </div>
+  <%# elsif alert %>
+  <div id="notice_wrapper">
+    <p class="alert"><%= alert %></p>
+  </div>
+  <%# end %>
+  <%= render partial: "carts/cart" if @render_cart %>
+  <%= yield %>
   </body>
 </html>

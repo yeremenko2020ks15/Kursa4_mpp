@@ -1,17 +1,78 @@
 <h1>Hello, Rails!</h1>
-<%= link_to "Products", products_path %>
-<%= link_to "Category", pr_categories_path %>
-<%= link_to "SubCategory", pr_sub_categories_path %>
-<%= link_to "County", pr_countries_path %>
-<%= link_to "Brand", pr_brands_path %>
-<%= link_to "Color", pr_colors_path %>
-<%= link_to "Sweetness", pr_sweetnesses_path %>
-<%= link_to "Classification", pr_classifications_path %>
-<%= link_to "product inventory", product_inventories_path %>
-<%= link_to "User", users_path %>
-<%= link_to "User_address", user_addresses_path %>
-<%= link_to "User payment", user_payments_path %>
-<%= link_to "Shopping_session", shopping_sessions_path %>
-<%= link_to "Payment type", payment_types_path %>
-<%= link_to "Order_details", order_details_path %>
-<%= link_to "Comments", comments_path %>
+<div style="display:flex;width: auto; height: 33px;">
+  <% if user_signed_in? %>
+    <div> Welcome <%= current_user.email %> </div>
+    <% if current_user.avatar_url? %>
+      <%= image_tag(current_user.avatar_url) %>
+    <% end %>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= button_to "Sign in", new_user_session_path %>
+  <% end %>
+</div>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>Pr name</th>
+      <th>Price for client</th>
+      <th>Images</th>
+      <th>Description</th>
+      <th>Rating</th>
+      <th>Comments</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @products.each do |product| %>
+        <tr>
+          <td><%= product.pr_name %></td>
+          <td><%= product.price_for_client %></td>
+          <td>
+            <% product.images.each do |image| %>
+              <%= link_to image_tag(image, style:"width:100px; height:130px"), image %>
+            <% end %>
+          </td>
+          <td style="width:200px;"><%= product.description %></td>
+
+            <%= count = 0 %>
+            <%= rating_sum = 0 %>
+            <% @comments.each do |comment| %>
+              <% if comment.product_id == product.id %>
+                <%= count+=1 %>
+                <%= rating_sum += comment.rating %>
+              <% end %>
+            <% end %>
+
+          <td>
+            <% if count > 0 %>
+              <%= ((rating_sum/count).ceil(2)) %>
+            <% else %>
+              0
+            <% end %></td>
+          <td>
+            <% @comments.each do |comment| %>
+                <% if comment.product_id == product.id %>
+                  <br>
+                <%= comment.user_id.to_s + ': ' %>
+                <%= comment.comment + ',' + comment.rating.to_s %>
+                <% end %>
+              <% end %></td>
+
+          <td><%= form_with(url: carts_add_path) do |f| %>
+                <%= f.hidden_field :id, value: product.id %>
+                <%= f.number_field :quantity, value: 0, min: 1 %>
+                <%= f.submit "Add To Cart" %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= form_with(url: order_details_create_order_path) do |f| %>
+      <%= f.hidden_field :id, value: session[:cart_id] %>
+      <%= f.submit "ZamOVity" %>
+    <% end %>
+  </div>
+</div>

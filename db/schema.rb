@@ -10,45 +10,122 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_04_150835) do
+ActiveRecord::Schema.define(version: 2023_05_08_163212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cart_items", force: :cascade do |t|
-    t.bigint "shopping_session_id", null: false
-    t.bigint "product_id", null: false
-    t.integer "quantity"
-    t.float "total"
-    t.index ["product_id"], name: "index_cart_items_on_product_id"
-    t.index ["shopping_session_id"], name: "index_cart_items_on_shopping_session_id"
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.decimal "total", precision: 12, scale: 2
+    t.boolean "done"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
     t.float "rating"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.integer "disc"
+    t.boolean "is_active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_discounts_on_product_id"
   end
 
   create_table "order_details", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "cart_item_id", null: false
+    t.bigint "cart_id", null: false
     t.bigint "payment_type_id", null: false
     t.string "payment_id"
     t.boolean "completed"
     t.boolean "rejection"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cart_item_id"], name: "index_order_details_on_cart_item_id"
+    t.index ["cart_id"], name: "index_order_details_on_cart_id"
     t.index ["payment_type_id"], name: "index_order_details_on_payment_type_id"
     t.index ["user_id"], name: "index_order_details_on_user_id"
   end
 
+  create_table "orderables", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "cart_id", null: false
+    t.integer "quantity"
+    t.index ["cart_id"], name: "index_orderables_on_cart_id"
+    t.index ["product_id"], name: "index_orderables_on_product_id"
+  end
+
   create_table "payment_types", force: :cascade do |t|
-    t.string "type"
+    t.string "p_type"
+  end
+
+  create_table "pr_alcohols", force: :cascade do |t|
+    t.float "alcohol"
   end
 
   create_table "pr_brands", force: :cascade do |t|
@@ -59,16 +136,16 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
     t.string "category"
   end
 
-  create_table "pr_classifications", force: :cascade do |t|
-    t.string "classification"
-  end
-
   create_table "pr_colors", force: :cascade do |t|
     t.string "color"
   end
 
   create_table "pr_countries", force: :cascade do |t|
     t.string "country"
+  end
+
+  create_table "pr_endurances", force: :cascade do |t|
+    t.integer "endurance"
   end
 
   create_table "pr_sub_categories", force: :cascade do |t|
@@ -79,9 +156,13 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
     t.string "sweetness"
   end
 
+  create_table "pr_volumes", force: :cascade do |t|
+    t.string "volume"
+  end
+
   create_table "product_inventories", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.float "price"
+    t.decimal "price", precision: 8, scale: 2
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -90,36 +171,30 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
 
   create_table "products", force: :cascade do |t|
     t.string "pr_name"
-    t.float "price_for_client"
-    t.string "description"
+    t.decimal "price_for_client", precision: 8, scale: 2
+    t.text "description"
     t.string "SKUN"
     t.integer "quantity"
-    t.integer "alc_strength"
-    t.integer "alc_endurance"
+    t.bigint "pr_volume_id"
+    t.bigint "pr_alcohol_id"
+    t.bigint "pr_endurance_id"
     t.bigint "pr_category_id"
     t.bigint "pr_sub_category_id"
     t.bigint "pr_brand_id"
     t.bigint "pr_country_id"
-    t.bigint "pr_classification_id"
     t.bigint "pr_color_id"
     t.bigint "pr_sweetness_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["pr_alcohol_id"], name: "index_products_on_pr_alcohol_id"
     t.index ["pr_brand_id"], name: "index_products_on_pr_brand_id"
     t.index ["pr_category_id"], name: "index_products_on_pr_category_id"
-    t.index ["pr_classification_id"], name: "index_products_on_pr_classification_id"
     t.index ["pr_color_id"], name: "index_products_on_pr_color_id"
     t.index ["pr_country_id"], name: "index_products_on_pr_country_id"
+    t.index ["pr_endurance_id"], name: "index_products_on_pr_endurance_id"
     t.index ["pr_sub_category_id"], name: "index_products_on_pr_sub_category_id"
     t.index ["pr_sweetness_id"], name: "index_products_on_pr_sweetness_id"
-  end
-
-  create_table "shopping_sessions", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.float "total"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_shopping_sessions_on_user_id"
+    t.index ["pr_volume_id"], name: "index_products_on_pr_volume_id"
   end
 
   create_table "user_addresses", force: :cascade do |t|
@@ -142,31 +217,42 @@ ActiveRecord::Schema.define(version: 2023_05_04_150835) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "phone"
     t.string "full_name"
-    t.string "email"
-    t.string "telephone"
-    t.boolean "is_admin"
+    t.string "uid"
+    t.string "avatar_url"
+    t.string "provider"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "cart_items", "products"
-  add_foreign_key "cart_items", "shopping_sessions"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "products"
-  add_foreign_key "order_details", "cart_items"
+  add_foreign_key "comments", "users"
+  add_foreign_key "discounts", "products"
+  add_foreign_key "order_details", "carts"
   add_foreign_key "order_details", "payment_types"
   add_foreign_key "order_details", "users"
+  add_foreign_key "orderables", "carts"
+  add_foreign_key "orderables", "products"
   add_foreign_key "product_inventories", "products"
+  add_foreign_key "products", "pr_alcohols"
   add_foreign_key "products", "pr_brands"
   add_foreign_key "products", "pr_categories"
-  add_foreign_key "products", "pr_classifications"
   add_foreign_key "products", "pr_colors"
   add_foreign_key "products", "pr_countries"
+  add_foreign_key "products", "pr_endurances"
   add_foreign_key "products", "pr_sub_categories"
   add_foreign_key "products", "pr_sweetnesses"
-  add_foreign_key "shopping_sessions", "users"
+  add_foreign_key "products", "pr_volumes"
   add_foreign_key "user_addresses", "users"
   add_foreign_key "user_payments", "users"
 end
