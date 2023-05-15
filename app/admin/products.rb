@@ -49,6 +49,7 @@ ActiveAdmin.register Product do
   end
 
   form html: { multipart: true } do |f|
+    f.object.quantity = 0
     f.inputs "Product" do
       f.input :pr_name
       f.input :price_for_client
@@ -59,8 +60,8 @@ ActiveAdmin.register Product do
       f.input :pr_alcohol_id, as: :select, :collection => PrAlcohol.all
       f.input :pr_endurance_id, as: :select, :collection => PrEndurance.all
       f.input :pr_category_id, as: :select, :collection => PrCategory.all
-      f.input :pr_sub_category_id, as: :select, :collection => PrSubCategory.all
-      f.input :pr_brand_id, as: :select, :collection => PrBrand.all
+      f.input :pr_sub_category_id, as: :searchable_select, :collection => PrSubCategory.all
+      f.input :pr_brand_id, as: :searchable_select, :collection => PrBrand.all
       f.input :pr_country_id, as: :select, :collection => PrCountry.all
       f.input :pr_color_id, as: :select, :collection => PrColor.all
       f.input :pr_sweetness_id, as: :select, :collection => PrSweetness.all
