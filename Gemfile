@@ -32,13 +32,26 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # gem "image_processing", "~> 1.2"
 gem 'activeadmin'
 
+gem 'coffee-rails'
+gem 'jquery-rails'
+gem 'select2-rails'
+gem 'activeadmin-select2', git: 'http://github.com/mfairburn/activeadmin-select2'
+gem 'activeadmin-searchable_select'
+
+
+gem 'country_select', '~> 8.0'
+
 gem 'turbo-rails'
 
 gem 'responders', '~> 3.1'
 
 gem "devise"
 
-gem 'country_select', '~> 8.0'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
