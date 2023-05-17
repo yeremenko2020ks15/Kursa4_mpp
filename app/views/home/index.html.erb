@@ -167,9 +167,7 @@
 <div class="container d-flex mx-5">
   <% @products.each do |product| %>
     <div class="card" style="width:20rem;margin:20px 10px 24px 0;">
-      <% product.images.each do |image| %>
-        <%= link_to image_tag(image, style:"width:40%; height:100%"), image %>
-      <% end %>
+        <%= link_to image_tag(product.images[0], style:"width:100px; height:130px"), product%>
       <div class="card-body">
         <h4 class="card-title"><%= product.pr_name %></h4>
         <h5 ><%= product.price_for_client %>₴</h5>
@@ -243,4 +241,7 @@
     <% end %>
     </tbody>
   </table>
+
+
+  <%= link_to "Category", find_by_cat_path(category: 'абсент') %>
 </div>
