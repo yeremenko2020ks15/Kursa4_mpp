@@ -38,17 +38,18 @@
       </h2>
     </div>
 
-
-
+  <% if @cart.total == 0 %>
+        <h5>Ваша корзина порожня</h5>
+      <% else %>
 
     <% @cart.orderables.each do |orderable| %>
       <% product = orderable.product %>
       <div id="<%= "cart-#{product.id}" %>">
         <div class="product ">
           <div class="product-info">
-            <strong >Name:</strong> <%= product.pr_name %> <br>
-            <strong>Price:</strong> <%= product.price_for_client %><br>
-            <strong>SKUN:</strong> <%= product.SKUN %><br>
+            <strong >Назва:</strong> <%= product.pr_name %> <br>
+            <strong>Ціна:</strong> <%= product.price_for_client %><br>
+            <strong>Код товару:</strong> <%= product.SKUN %><br>
 
             <div class=" advantages">
               <div class="header-top-account d-flex justify-content-end">
@@ -74,18 +75,19 @@
             </div>
           </div>
         </div>
-
-
+    <% end %>
 
 
 
     <div class="checkout">
-      <h3><strong>Total:</strong> <%= orderable.total %><br></h3>
-      <button class="checkout-button">Оформити замовлення</button>
+      <h3><strong>Загальна ціна:</strong> <%= @cart.total %><br></h3>
+      <%= button_to 'Замовити', 'carts/create_order', :class=>"checkout-button" %>
     </div>
+    <br>
   </div>
 </div>
-<% end %>
+      <% end %>
+
 <div id="footer"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/main.js"></script>

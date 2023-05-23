@@ -1,5 +1,6 @@
 class OrderDetailsController < ApplicationController
   # before_action :set_order_detail, only: %i[ show edit update destroy ]
+  after_action :create_order
 
   # # GET /order_details or /order_details.json
   # def index
@@ -8,7 +9,6 @@ class OrderDetailsController < ApplicationController
 
   # GET /order_details/1 or /order_details/1.json
   def show
-    @render_order = false
   end
   #
   # # GET /order_details/new
@@ -16,20 +16,6 @@ class OrderDetailsController < ApplicationController
   #   @order_detail = OrderDetail.new
   # end
 
-  def create_order
-    if @order_details.nil?
-      @order_details = OrderDetail.create(user_id: current_user.id, cart_id: @cart.id, payment_type_id: 1, payment_id: 'some_text', completed: false, rejection: false)
-      @cart.update(done: true)
-    end
-    respond_to do |format|
-      format.html do
-        redirect_to '/'
-      end
-      format.json {render json: json.replace('cart',
-                                             partial: 'cart/cart',
-                                             locals: { cart: @cart })}
-    end
-  end
 #
 #   # GET /order_details/1/edit
 #   def edit
