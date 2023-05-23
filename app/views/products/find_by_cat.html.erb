@@ -26,60 +26,40 @@
       });
   </script>
 </head>
-  <h1>Products</h1>
+<body>
+<%= render 'form' %>
 
-  <table>
-    <thead>
-    <tr>
-      <th>Pr name</th>
-      <th>Price for client</th>
-      <th>Description</th>
-      <th>Skun</th>
-      <th>Volume</th>
-      <th>Alcohol</th>
-      <th>Endurance</th>
-      <th>Pr category</th>
-      <th>Pr sub category</th>
-      <th>Pr brand</th>
-      <th>Pr country</th>
-      <th>Pr color</th>
-      <th>Pr sweetness</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
+<!--<div class="row d-flex justify-content-start">-->
+  <%# @products.each do |product| %>
+<!--    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">-->
+      <%#= link_to(product) do %>
+<!--        <div class="product-card">-->
+<!--          <div class="product-thumb">-->
+            <%#= image_tag(product.images[0]) %>
+<!--          </div>-->
+<!--          <div class="product-details">-->
+            <%#= product.pr_name %>
+            <%#= product.pr_sub_category %>
+<!--            <div class="product-bottom-details d-flex justify-content-between">-->
+<!--              <div class="product-price">-->
+<!--                <%#= product.price_for_client %>₴-->
+<!--              </div>-->
+<!--              <div class="product-links">-->
+<!--                <a>-->
+                  <%#= form_with(url: carts_add_path) do |f| %>
+                    <%#= f.hidden_field :id, value: product.id %>
+                    <%#= f.hidden_field :quantity, value: 1 %>
+                    <%#= f.submit "Dodaty v koshyk", :class=>"btn  btn-outline-secondary add-to-cart"%>
+                  <%# end %>
+<!--                </a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+      <%# end %>
+<!--    </div>-->
+  <%# end %>
+<!--</div>-->
 
-    <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.pr_name %></td>
-        <td><%= product.price_for_client %></td>
-
-        <td><%= product.description %></td>
-        <td><%= product.SKUN %></td>
-        <td><%= product.pr_volume_id %></td>
-        <td><%= product.pr_alcohol_id %></td>
-        <td><%= product.pr_endurance_id %></td>
-        <td><%= product.pr_category_id %></td>
-        <td><%= product.pr_sub_category_id %></td>
-        <td><%= product.pr_brand_id %></td>
-        <td><%= product.pr_country_id %></td>
-        <td><%= product.pr_color_id %></td>
-        <td><%= product.pr_sweetness_id %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= form_with(url: carts_add_path) do |f| %>
-            <%= f.hidden_field :id, value: product.id %>
-            <%= f.number_field :quantity, value: 0, min: 1 %>
-            <%= f.submit "Add To Cart" %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'New Product', new_product_path %>
+</body>
 </html>
