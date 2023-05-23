@@ -32,14 +32,16 @@ Rails.application.routes.draw do
 
   get 'cart', to: 'carts#show'
   get 'id/:category', to: 'products#find_by_cat', as: 'find_by_cat'
-  get '/info', to: 'home#aboutcom.html'
-  get '/pay_info', to: 'home#payinfo.html'
-  get '/contacts', to: 'home#contacts.html'
+  get 'info', to: 'home#aboutcom.html'
+  get 'pay_info', to: 'home#payinfo.html'
+  get 'contacts', to: 'home#contacts.html'
+  get 'search', to: 'products#search'
 
   post 'carts/add'
   post 'carts/remove'
-  post 'order_details/create_order'
+  post 'carts/create_order', to: 'carts#create_order'
   post 'products/create_comment', to: 'products#create_comment'
+  post 'carts/add_address', to: 'carts#add_address'
 
   root 'home#index'
 end

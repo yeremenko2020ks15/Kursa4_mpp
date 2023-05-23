@@ -8,7 +8,9 @@
 
 
 
+
  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
 #
 # doc = File.open("/home/dimrodgers/Nokogiri_test/Brands.xml") { |f| Nokogiri::XML(f) }
 #

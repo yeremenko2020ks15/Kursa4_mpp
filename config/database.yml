@@ -22,8 +22,8 @@ default: &default
   host: localhost
   pool: 5
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: kiyvee
-  password: zaebali
+  username: Arsa
+  password: root
 
 development:
   <<: *default

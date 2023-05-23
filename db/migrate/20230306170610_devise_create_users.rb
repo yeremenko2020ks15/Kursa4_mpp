@@ -11,6 +11,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :uid
       t.string :avatar_url
       t.string :provider #to check google/twitter/etc.
+      t.string :city
+      t.string :address
 
       ## Recoverable
       t.string   :reset_password_token

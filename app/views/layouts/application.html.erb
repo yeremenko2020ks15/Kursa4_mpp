@@ -11,6 +11,16 @@
   </head>
   <%unless request.path == '/users/sign_in'%> 
   <header class="header">
+
+    <% if notice %>
+      <div class="bg-warning text-center" ><%= notice %></div>
+
+    <% end %>
+    <% if alert %>
+      <%= notice %>
+    <% end %>
+    <h6 class="text-center">Надсилаємо товар тільки накладеним платежем, додавати товари до кошика можуть тільки авторизовані користувачі. Вибачте за тимчасові незручності!</h6>
+    <hr>
     <div class="header-top py-1">
       <div class="container-fluid">
         <div class="row">
@@ -28,6 +38,7 @@
 
             </div>
           </div>
+
 
           <!-- phone n logo -->
 
@@ -87,6 +98,7 @@
 
         </div>
       </div>
+
     </div>     <!-- =========./header-top ==================-->
     <!-- ./header-start -->
 
@@ -146,7 +158,7 @@
           <!-- .menu -->
 
           <div class="col-md-4 order-md-1 mt-2 mt-md-0">
-            <form action="">
+            <form action="/search">
               <div class="input-group">
                 <input type="text" class="form-control" name="s" placeholder="Пошук..." aria-label="Пошук..." aria-describedby="button-search">
                 <button class="btn btn-outline-warning" type="submit" id="button-search">
@@ -224,22 +236,7 @@
           </div>
 
 
-          <div class="col-md-6 col-6 advantages">
-            <div class="header-top-account d-flex justify-content-end">
-              <ul class="phone-icons d-flex justify-content-center">
-                <li>
-                  <a href="#" class="btn p-1"><i class="fa-brands fa-cc-visa"></i></a></li>
-                <li>
-                  <a href="#" class="btn p-1">
-                    <i class="fa-brands fa-cc-mastercard"></i> </a></li>
-                <li>
-                  <a href="#" class="btn p-1">
-                    <i class="fa-solid fa-sack-dollar"></i> </a></li>
-              </ul>
 
-
-            </div>
-          </div>
 
 
         </div>

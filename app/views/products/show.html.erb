@@ -66,8 +66,17 @@
                                 ₴
                             </div>
                             <div class="product-links">
-                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                        class="fas fa-shopping-cart"></i></a>
+															<% if user_signed_in? %>
+																<%= form_with(url: carts_add_path) do |f| %>
+																	<%= f.hidden_field :id, value: @product.id %>
+																	<% if @cart.orderables.find_by(product_id: @product.id) %>
+																		<%= f.hidden_field :quantity, value: @cart.orderables.find_by(product_id: @product.id).quantity + 1 %>
+																	<% else %>
+																		<%= f.hidden_field :quantity, value:  1 %>
+																	<% end %>
+																	<%= f.submit "В кошик!", :class=>"btn  btn-outline-secondary add-to-cart"%>
+																<% end %>
+															<% end %>
                             </div>
                         </div>
                     </div>
@@ -254,6 +263,6 @@
 </div>
 <br>
 
+
 </body>
 </html>
-

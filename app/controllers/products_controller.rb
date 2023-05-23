@@ -15,6 +15,10 @@ def create_comment
     @render_products = false
   end
 
+  def search
+    @products = Product.where("pr_name LIKE?", "%" + params[:s] + "%")
+  end
+
   def find_by_cat
     if (pr_cat = PrCategory.find_by(category: params[:category]))
       @products = Product.where(pr_category: pr_cat)
@@ -23,6 +27,10 @@ def create_comment
     else
       redirect_to '/'
     end
+  end
+
+  def create_comment
+    Comment.create(user_id: params[:user_id], product_id: params[:product_id], rating: params[:rating], comment: params[:comment])
   end
 
   # GET /products/new

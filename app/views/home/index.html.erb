@@ -131,37 +131,44 @@
           </h2>
         </div>
       </div>
-      <div class="row d-flex justify-content-start">
-        <% @products.each do |product| %>
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <%= link_to(product) do %>
-              <div class="product-card">
-                <div class="product-thumb">
-                  <%= image_tag(product.images[0]) %>
-                </div>
-                <div class="product-details">
-                  <%= product.pr_name %>
-                  <%= product.pr_sub_category %>
-                  <div class="product-bottom-details d-flex justify-content-between">
-                    <div class="product-price">
-                      <%= product.price_for_client %>₴
-                    </div>
-                    <div class="product-links">
-                      <a>
-                        <%= form_with(url: carts_add_path) do |f| %>
-                          <%= f.hidden_field :id, value: product.id %>
-                          <%= f.hidden_field :quantity, value: 1 %>
-                          <%= f.submit "Dodaty v koshyk", :class=>"btn  btn-outline-secondary add-to-cart"%>
-                        <% end %>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+
+      <%= render 'products/form' %>
+<!--      <div class="row d-flex justify-content-start">-->
+        <%# @products.each do |product| %>
+<!--          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">-->
+            <%#= link_to(product) do %>
+<!--              <div class="product-card">-->
+<!--                <div class="product-thumb">-->
+                  <%#= image_tag(product.images[0]) %>
+<!--                </div>-->
+<!--                <div class="product-details">-->
+                  <%#= product.pr_name %>
+                  <%#= product.pr_sub_category %>
+<!--                  <div class="product-bottom-details d-flex justify-content-between">-->
+<!--                    <div class="product-price">-->
+<!--                      <%#= product.price_for_client %>₴-->
+<!--                    </div>-->
+<!--                    <div class="product-links">-->
+<!--                      <a>-->
+                        <%#= form_with(url: carts_add_path) do |f| %>
+                          <%#= f.hidden_field :id, value: product.id %>
+                          <%# if @cart.orderables.where(product_id: product.id)[0] == nil %>
+                              <%#= f.hidden_field :quantity, value: 1%>
+                            <%# else %>
+                              <%#= f.hidden_field :quantity, value: @cart.orderables.where(product_id: product.id)[0].quantity + 1%>
+                            <%# end %>
+                          <%#= f.submit "", :class=>"btn  btn-outline-secondary add-to-cart"%>
+                        <%# end %>
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+            <%# end %>
+<!--          </div>-->
+        <%# end %>
+<!--      </div>-->
+
 
     </div>
   </main>
