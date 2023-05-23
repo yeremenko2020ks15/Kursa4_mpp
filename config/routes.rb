@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   post 'carts/add'
   post 'carts/remove'
   post 'order_details/create_order'
+  post 'products/create_comment', to: 'products#create_comment'
 
   root 'home#index'
 end
