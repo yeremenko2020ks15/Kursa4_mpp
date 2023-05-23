@@ -13,71 +13,156 @@
   <link rel="stylesheet" href="home.scss">
   <link rel="icon" href="favicon.png" sizes="any"/>
 </head>
-
 <body>
-<p>
-  <strong>Pr name:</strong>
-  <%= @product.pr_name %>
-</p>
+    
 
-<p>
-  <strong>Price for client:</strong>
-  <%= @product.price_for_client %>
-</p>
+    <div id="header"></div>
+   
+    
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
 
-<p>
-  <strong>Skun:</strong>
-  <%= @product.SKUN %>
-</p>
+        <div class="container ">
+            <div class="row">
+              <div class="col advantages d-flex justify-content-left">
+                
+              </div>
+              <div class="col col-lg-8">
+                <h2 class=" d-flex justify-content-center">
+                    <span><br>  <%= @product.pr_name %> </span>
+                </h2>
+              </div>
+              <div class="col">
+                <h2 class="col advantages d-flex justify-content-end"><br>
+                    
+                </h2>
+              </div>
+            </div>
+          </div><br>
 
-<p>
-  <strong>Volume:</strong>
-  <%= @product.pr_volume_id %>
-</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-7"><div >
+                <div class="product-card">
+                    <div class="product-card-offer ">
+                       
+                    </div>
+                    <p class="bg-warning col-md-4 rounded">  Kod tovaru: <%= @product.SKUN %></p>
+                    <div class="product-thumb ">
+			
+                        <%= image_tag(@product.images[0]) %>
+                    </div>
+                    <div class="text-center">
+                        <h3>
+                            <%= @product.pr_name %>
+				
+                        </h3>
+                        <p class="product-excerpt">
+                        
+                            
+                        </p>
+                        <div class="product-bottom-details d-flex justify-content-between">
+                            <div >
+                             <%= @product.price_for_client %>
+                                ₴
+                            </div>
+                            <div class="product-links">
+                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
+                                        class="fas fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            
+              <div class="col-sm-5"><div >
+              
+                <div class="content detail-text-wrap">
+                   
+			<p>
+  			<strong>Obyem:</strong> 
+  			<%= @product.pr_volume%>
+			</p>
 
-<p>
-  <strong>Alcohol:</strong>
-  <%= @product.pr_alcohol_id %>
-</p>
+			<p>
+			<%if @product.pr_alcohol_id%>
+  			<strong>Micnist:</strong>
+  			<%= @product.pr_alcohol%>
+  			<%end%>
+			</p>
 
-<p>
-  <strong>Endurance:</strong>
-  <%= @product.pr_endurance_id %>
-</p>
+			<p>
+			<%if @product.pr_endurance_id%>
+  			<strong>Vitrimka:</strong>
+  			<%= @product.pr_endurance%>
+  			<%end%>
+			</p>
 
-<p>
-  <strong>Pr category:</strong>
-  <%= @product.pr_category_id %>
-</p>
+			<p>
+			<%if @product.pr_category_id%>
+  			<strong>Pr category:</strong>
+  			<%= @product.pr_category%>
+  			<%end%>
+			</p>
 
-<p>
-  <strong>Pr sub category:</strong>
-  <%= @product.pr_sub_category %>
-</p>
+			<p>
+			<%if @product.pr_sub_category_id%>
+  			<strong>Pr sub category:</strong>
+  			<%= @product.pr_sub_category%>
+  			<%end%>
+			</p>
 
-<p>
-  <strong>Pr brand:</strong>
-  <%= @product.pr_brand_id %>
-</p>
+			<p>
+			<%if @product.pr_brand_id%>
+  			<strong>Pr brand:</strong>
+  			<%= @product.pr_brand%>
+			<%end%>
+			</p>
 
-<p>
-  <strong>Pr country:</strong>
-  <%= @product.pr_country_id %>
-</p>
+			<p>
+			<%if @product.pr_country_id%>
+  			<strong>Pr country:</strong>
+  			<%= @product.pr_country%>
+  			<%end%>
+			</p>
 
-<p>
-  <strong>Pr color:</strong>
-  <%= @product.pr_color_id %>
-</p>
+			<p>
+			<%if @product.pr_color_id%>
+			<strong>Pr color:</strong>
+			<%= @product.pr_color%>
+			<%end%>
+			</p>
 
-<p>
-  <strong>Pr sweetness:</strong>
-  <%= @product.pr_sweetness_id %>
-</p>
+			<p>
+			<%if @product.pr_color_id%>
+			<strong>Pr sweetness:</strong>
+			<%= @product.pr_sweetness%>
+			<%end%>
+			</p>
+			</div>
+                 </div>
+                </div>
+                
+                
+                 <div class="col-12 text-center">
+                <br>
+                <br>
+               
+                        <h4 class="section-title"> 
+                            <span>Про <%= @product.pr_name %> </span>
+                        </h4>
+                    </div> 
+			<br><%= @product.description %><br>
+			
+            </div>
+           <br>
+                <br>
+          </div>
+
+		<div>
+			
+
+         
+</div>
+
 </body>
 </html>
