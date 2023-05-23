@@ -16,6 +16,14 @@ class CartsController < ApplicationController
   #   @cart = Cart.new
   # end
 
+  def create_order
+    if @order_details.nil?
+      @order_details = OrderDetail.create(user_id: current_user.id, cart_id: @cart.id, payment_type_id: 1, payment_id: 'some_text', completed: false, rejection: false)
+      @cart.update(done: true)
+    end
+    redirect_to '/'
+  end
+
   def add
     if user_signed_in?
       @product = Product.find_by(id: params[:id])

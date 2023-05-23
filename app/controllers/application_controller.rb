@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
   respond_to :html
 
-  skip_before_action :verify_authenticity_token, if: -> {controller_name == 'sessions'}
+
+  skip_before_action :verify_authenticity_token, if: -> { controller_name == 'sessions' }
+
 
   before_action :initialize_cart
   respond_to :html, :json
