@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
+def create_comment
+    Comment.create(user_id: params[:user_id], product_id: params[:product_id], rating: params[:rating], comment: params[:comment])
+  end
+
   # GET /products or /products.json
   def index
     @products = Product.all
@@ -84,6 +88,10 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:pr_name, :price_for_client, :description, :SKUN, :quantity, :pr_volume_id, :pr_alcohol_id, :pr_endurance_id, :pr_category_id, :pr_sub_category_id, :pr_brand_id, :pr_country_id, :pr_classification_id, :pr_color_id, :pr_sweetness_id, images: [])
+    
+    
+    params.require(:product).permit(:pr_name, :price_for_client, :description, :SKUN, :quantity, :pr_volume_id, :pr_alcohol_id, :pr_endurance_id, :pr_category_id, :pr_sub_category_id, :pr_brand_id, :pr_country_id, :pr_classification_id, :pr_color_id, :pr_sweetness_id, images: [])
     end
+    
+    
 end

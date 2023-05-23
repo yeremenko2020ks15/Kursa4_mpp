@@ -43,10 +43,10 @@
             <div class="row">
               <div class="col-sm-7"><div >
                 <div class="product-card">
-                    <div class="product-card-offer ">
-                       
-                    </div>
-                    <p class="bg-warning col-md-4 rounded">  Kod tovaru: <%= @product.SKUN %></p>
+          <div class="product-card-offer"></div>
+          <div class="bg-warning rounded d-inline-block p-2">
+            <p class="mb-0 text-dark">Код товару: <%= @product.SKUN %></p>
+          </div>
                     <div class="product-thumb ">
 			
                         <%= image_tag(@product.images[0]) %>
@@ -167,28 +167,102 @@
                 <br>
           </div>
 
+		
+<style>
+  .comment-section {
+    border: 2px solid #FFD700; /* Add a bright yellow border */
+    background-color: #FFFFE0; /* Add a pale yellow background */
+    padding: 20px; /* Add padding for spacing */
+    margin-left: 250px; /* Indent from the left by 250 pixels */
+    margin-right: 250px; /* Indent from the right by 250 pixels */
+    border-radius: 5px; /* Add a slight border radius for rounded corners */
+  }
+  
+  .comment-section form {
+    margin-bottom: 20px; /* Add spacing below the comment form */
+    display: flex; /* Use flexbox to align items */
+    flex-wrap: wrap; /* Allow wrapping of elements */
+    align-items: center; /* Vertically center items */
+  }
+  
+  .comment-section form .comment-input {
+    flex: 1 0 100%; /* Take full width on smaller screens */
+    margin-bottom: 10px; /* Add spacing below the comment input */
+  }
+  
+  .comment-section form .rating-input {
+    flex: 1 0 100%; /* Take full width on smaller screens */
+    margin-bottom: 10px; /* Add spacing below the rating input */
+  }
+  
+  .comment-section form .rating-input .star-rating {
+    display: inline-block;
+    font-size: 20px;
+    color: #FFD700;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .comment-section form .rating-input .star-rating:hover {
+    background: linear-gradient(to right, red, green);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .comment-section form .add-comment-button {
+    flex: 1 0 100%; /* Take full width on smaller screens */
+  }
+  
+  .comment {
+    margin-bottom: 20px; /* Add spacing between individual comments */
+  }
+  
+  .nickname {
+    color: orange; /* Set the username color to orange */
+    font-size: 18px; /* Increase the username font size */
+  }
+</style>
 
-		<div>
-			<%= form_with(url: products_create_comment_path) do |f| %>
-				<%= f.hidden_field :product_id, value: @product.id %>
-				<%= f.hidden_field :user_id, value: current_user.id %>
-				<%= f.number_field :rating, value: 0, min: 0, max: 5 %>
-				<%= f.text_field :comment %>
-				<%= f.submit "Додати коментар", :class=>"btn  btn-outline-secondary add-to-cart"%>
-			<% end %>
+<% if user_signed_in? %>
+<div class="comment-section">
+  <%= form_with(url: products_create_comment_path) do |f| %>
+    <div class="form-group comment-input">
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.text_area :comment, class: "form-control", rows: 3, placeholder: "Comment" %>
+    </div>
+    <div class="form-group rating-input">
+      <div class="star-rating">
+        <% 5.times do |i| %>
+          <%= f.radio_button :rating, i+1, id: "rating_#{i+1}" %>
+          <label for="rating_<%= i+1 %>" class="star">&#9733;</label>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group add-comment-button">
+      <%= f.submit "Додати коментар", :class=>"btn btn-outline-secondary add-to-cart" %>
+    </div>
+  <% end %>
+<% end %>
+  <div class="comments">
+    <% comments = Comment.where(product_id: @product.id) %>
+    <% if comments %>
+      <% comments.each do |comment| %>
+        <div class="comment">
+          <div class="comment-header">
+            <span class="nickname"><%= comment.user %></span>
+            <span class="rating"><%= comment.rating %></span>
+          </div>
+          <div class="comment-content">
+            <%= comment.comment %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<br>
 
-		</div>
-		<div>
-			<% comments = Comment.where(product_id: @product.id) %>
-			<% if comments %>
-				<% comments.each do |comment| %>
-					<%= comment.user %>
-					<%= comment.rating %>
-					<%= comment.comment %>
-				<% end %>
-			<% end %>
-         
-		</div>
 
 </body>
 </html>
