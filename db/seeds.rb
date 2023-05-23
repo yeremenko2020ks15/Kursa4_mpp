@@ -9,23 +9,23 @@
 
 
 
- AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+ AdminUser.create!(email: 'admin8@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 #
-# doc = File.open("/home/dimrodgers/Nokogiri_test/Brands.xml") { |f| Nokogiri::XML(f) }
-#
-# doc.css('b').each do |node|
-#
-#   PrBrand.create(
-#     :brand => node.text
-#   )
-# end
-#
-# doc = File.open("/home/dimrodgers/Nokogiri_test/Sub_cat.xml") { |f| Nokogiri::XML(f) }
-#
-# doc.css('sub_cat').each do |node|
-#
-#   PrSubCategory.create(
-#     :sub_category  => node.text
-#   )
-# end
+doc = File.open("/home/arsa/Downloads/Brands.xml") { |f| Nokogiri::XML(f) }
+
+doc.css('b').each do |node|
+
+  PrBrand.create(
+    :brand => node.text
+  )
+end
+
+doc = File.open("/home/arsa/Downloads/Sub_cat.xml") { |f| Nokogiri::XML(f) }
+
+doc.css('sub_cat').each do |node|
+
+  PrSubCategory.create(
+    :sub_category  => node.text
+  )
+end
