@@ -86,14 +86,14 @@
 			<p>
 			<%if @product.pr_alcohol_id%>
   			<strong>Micnist:</strong>
-  			<%= @product.pr_alcohol%>
+  			<%= @product.pr_alcohol.to_s%>
   			<%end%>
 			</p>
 
 			<p>
 			<%if @product.pr_endurance_id%>
   			<strong>Vitrimka:</strong>
-  			<%= @product.pr_endurance%>
+  			<%= @product.pr_endurance.to_s%>
   			<%end%>
 			</p>
 
