@@ -11,7 +11,15 @@
   </head>
   <%unless request.path == '/users/sign_in'%> 
   <header class="header">
-    <h6 class="text-center">My pracuemo tilky z nacladenym platejem!!! Dodaty tovar y koshyk moje tilky avtoryZOVanyi korystuvach!!!</h6>
+
+    <% if notice %>
+      <div class="bg-warning text-center" ><%= notice %></div>
+
+    <% end %>
+    <% if alert %>
+      <%= notice %>
+    <% end %>
+    <h6 class="text-center">Надсилаємо товар тільки накладеним платежем, додавати товари до кошика можуть тільки авторизовані користувачі. Вибачте за тимчасові незручності!</h6>
     <hr>
     <div class="header-top py-1">
       <div class="container-fluid">

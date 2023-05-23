@@ -55,7 +55,6 @@
             <div class=" advantages">
               <div class="header-top-account d-flex justify-content-end">
                 <ul class="phone-icons d-flex justify-content-center"><li>
-                  <button class="btn p-1"> <i class="fa-solid fa-plus"></i>
 
                     <%= form_with(url: carts_add_path) do |f| %>
                       <%= f.hidden_field :id, value: product.id %>
@@ -74,8 +73,26 @@
             </div>
           </div>
         </div>
-
     <% end %>
+
+      <div>
+        <h5>Залиште ці поля порожніми, якщо бажаєте, що б з вами зв'язались консультанти для уточнення деталей</h5>
+        <%= form_with(url: carts_add_address_path) do |f| %>
+          <%= f.hidden_field :id, value: current_user.id %>
+          <% if current_user.city %>
+            <%= f.text_field :city, placeholder: "Місто", value: current_user.city  %>
+          <% else %>
+            <%= f.text_field :city, placeholder: "Місто" %>
+          <% end %>
+          <% if current_user.address %>
+            <%= f.text_field :address, placeholder: "Адреса",  value: current_user.address %>
+          <% else %>
+            <%= f.text_field :address, placeholder: "Адреса" %>
+          <% end %>
+          <%= f.submit "Add address", :class=>'checkout-button'%>
+        <% end %>
+
+      </div>
 
     <div class="checkout">
       <h3><strong>Загальна ціна:</strong> <%= @cart.total %><br></h3>

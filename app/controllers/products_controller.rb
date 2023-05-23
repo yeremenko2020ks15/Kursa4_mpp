@@ -25,6 +25,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def create_comment
+    Comment.create(user_id: params[:user_id], product_id: params[:product_id], rating: params[:rating], comment: params[:comment])
+  end
+
   # GET /products/new
   def new
     @product = Product.new

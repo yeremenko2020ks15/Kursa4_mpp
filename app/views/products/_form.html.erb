@@ -18,8 +18,12 @@
                   <% if user_signed_in? %>
                     <%= form_with(url: carts_add_path) do |f| %>
                       <%= f.hidden_field :id, value: product.id %>
-                      <%= f.hidden_field :quantity, value: 1 %>
-                      <%= f.submit "Dodaty v koshyk", :class=>"btn  btn-outline-secondary add-to-cart"%>
+                      <% if @cart.orderables.find_by(product_id: product.id) %>
+                          <%= f.hidden_field :quantity, value: @cart.orderables.find_by(product_id: product.id).quantity + 1 %>
+                        <% else %>
+                          <%= f.hidden_field :quantity, value:  1 %>
+                        <% end %>
+                      <%= f.submit "В кошик!", :class=>"btn  btn-outline-secondary add-to-cart"%>
                     <% end %>
                   <% end %>
                 </a>

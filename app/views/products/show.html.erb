@@ -66,8 +66,17 @@
                                 ₴
                             </div>
                             <div class="product-links">
-                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                        class="fas fa-shopping-cart"></i></a>
+															<% if user_signed_in? %>
+																<%= form_with(url: carts_add_path) do |f| %>
+																	<%= f.hidden_field :id, value: @product.id %>
+																	<% if @cart.orderables.find_by(product_id: @product.id) %>
+																		<%= f.hidden_field :quantity, value: @cart.orderables.find_by(product_id: @product.id).quantity + 1 %>
+																	<% else %>
+																		<%= f.hidden_field :quantity, value:  1 %>
+																	<% end %>
+																	<%= f.submit "В кошик!", :class=>"btn  btn-outline-secondary add-to-cart"%>
+																<% end %>
+															<% end %>
                             </div>
                         </div>
                     </div>
@@ -158,11 +167,28 @@
                 <br>
           </div>
 
-		<div>
-			
 
+		<div>
+			<%= form_with(url: products_create_comment_path) do |f| %>
+				<%= f.hidden_field :product_id, value: @product.id %>
+				<%= f.hidden_field :user_id, value: current_user.id %>
+				<%= f.number_field :rating, value: 0, min: 0, max: 5 %>
+				<%= f.text_field :comment %>
+				<%= f.submit "Додати коментар", :class=>"btn  btn-outline-secondary add-to-cart"%>
+			<% end %>
+
+		</div>
+		<div>
+			<% comments = Comment.where(product_id: @product.id) %>
+			<% if comments %>
+				<% comments.each do |comment| %>
+					<%= comment.user %>
+					<%= comment.rating %>
+					<%= comment.comment %>
+				<% end %>
+			<% end %>
          
-</div>
+		</div>
 
 </body>
 </html>
