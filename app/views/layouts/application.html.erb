@@ -9,18 +9,239 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <header class="header">
+    <div class="header-top py-1">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6 col-sm-4">
+            <div class="header-top-phone d-flex align-items-center h-100">
+              <ul class="phone-icons d-flex justify-content-center">
+                <li class="ms-2"><a href="index.html">
+                  <img src="logo.svg" alt="">
+                </a></li>
+                <li class="ms-4"><i class="fa-solid fa-mobile-screen"></i>
+                  <a href="tel:+1234567890" class="ms-2">+380-98-851-52-66</a></li>
+                <li><i class="fa-solid fa-mobile-screen"></i>
+                  <a href="tel:+1234567890" class="ms-2">+380-99-362-12-16</a></li>
+              </ul>
+
+            </div>
+          </div>
+
+          <!-- phone n logo -->
+
+          <div class="col-sm-4 d-none d-sm-block">
+            <ul class="social-icons d-flex justify-content-center">
+              <li>
+                <a href="https://www.youtube.com/">
+                  <i class="fa-brands fa-youtube"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/home">
+                  <i class="fa-brands fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://web.telegram.org/">
+                  <i class="fa-brands fa-telegram"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- media -->
+
+          <div class="col-6 col-sm-4">
+            <div class="header-top-account d-flex justify-content-end">
+              <ul class="phone-icons d-flex justify-content-center">
+                <li>
+                  <% if user_signed_in? %>
+                    <%= link_to 'Log out', destroy_user_session_path, class: "dropdown-item", :method => :delete %>
+                  <%  else  %>
+                    <a href="/users/sign_in" class="btn p-1"><i class="fa-solid fa-right-to-bracket"></i></a>
+                  <% end %>
+                </li>
+                <li>
+                  <% if user_signed_in? %>
+                    <a href="cart" class="btn p-1">
+                      <i class="fa-solid fa-cart-shopping"></i> </a></li>
+                  <% end %>
+                  </ul>
+
+
+            </div>
+
+          </div>
+          <!-- account n cart -->
+
+        </div>
+      </div>
+    </div>     <!-- =========./header-top ==================-->
+    <!-- ./header-start -->
+
+    <div class="header-bottom sticky-top">
+      <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Catalog</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Головна</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/info">Про компанію</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/pay_info">Оплата і доставка</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contacts">Контакти</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    Каталог
+                  </a>
+
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <%= link_to "Міцний алкоголь", find_by_cat_path(category: 'Міцний алкоголь'), :class=>'dropdown-item category'%>
+                    </li>
+                    <li>
+                      <%= link_to "Вино", find_by_cat_path(category: 'Вино'), :class=>'dropdown-item category'%>
+                    </li>
+                    <li>
+                      <%= link_to "Шампанське", find_by_cat_path(category: 'Шампанське'), :class=>'dropdown-item category'%>
+                    </li>
+                    <li>
+                      <%= link_to "Слабоалкогольні б/а напої", find_by_cat_path(category: 'Слабоалкоголка'), :class=>'dropdown-item category'%>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- .menu -->
+
+          <div class="col-md-4 order-md-1 mt-2 mt-md-0">
+            <form action="">
+              <div class="input-group">
+                <input type="text" class="form-control" name="s" placeholder="Пошук..." aria-label="Пошук..." aria-describedby="button-search">
+                <button class="btn btn-outline-warning" type="submit" id="button-search">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- .search -->
+
+        </div>
+      </nav>
+    </div>
+
+  </header>
 
   <body>
-  <%# if notice %>
-  <div id="notice_wrapper">
-    <p class="notice"><%= notice %></p>
-  </div>
-  <%# elsif alert %>
-  <div id="notice_wrapper">
-    <p class="alert"><%= alert %></p>
-  </div>
-  <%# end %>
-  <%= render partial: "carts/cart" if @render_cart %>
   <%= yield %>
   </body>
+  <footer>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 col-6">
+            <h4 class=" ms-5">Каталог</h4>
+            <ul class="list-unstyled ms-5">
+              <li>
+                <%= link_to "Міцний алкоголь", find_by_cat_path(category: 'Міцний алкоголь'), :class=>'dropdown-item category'%>
+              </li>
+              <li>
+                <%= link_to "Вино", find_by_cat_path(category: 'Вино'), :class=>'dropdown-item category'%>
+              </li>
+              <li>
+                <%= link_to "Шампанське", find_by_cat_path(category: 'Шампанське'), :class=>'dropdown-item category'%>
+              </li>
+              <li>
+                <%= link_to "Слабоалкогольні б/а напої", find_by_cat_path(category: 'Слабоалкоголка'), :class=>'dropdown-item category'%>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-6">
+            <h4>Контакти</h4>
+
+            <ul class="list-unstyled">
+              <li><i class="fa-solid fa-mobile-screen"></i>
+                <a href="tel:+1234567890" class="ms-2">+380-98-851-52-66</a></li>
+              <p>
+              <li><i class="fa-solid fa-mobile-screen"></i>
+
+                <a href="tel:+1234567890" class="ms-2">+380-99-362-12-16</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-6">
+            <h4 class="ms-2">Follow us</h4>
+            <ul class="footer-icons">
+              <li><a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a></li>
+              <li><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a></li>
+              <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+              <li><a href="https://www.google.com/intl/uk/gmail/about/"><i class="fa-solid fa-envelope"></i></a></li>
+
+
+            </ul>
+          </div>
+
+          <div class="col-md-6 col-6">
+            <h6 class=" ms-5">2023 © DedDoma.UA - інтернет-магазин Алкоголю.
+              Ми не продаємо алкоголь особам, що не досягли повноліття!
+              Поширення і використання матеріалів сайту заборонено!
+              Магазин працює тільки для кінцевого споживача, подальший перепродаж алкоголю заборонено!
+              Надмірне вживання алкоголю шкодить вашому здоров'ю!</h6>
+
+          </div>
+
+
+          <div class="col-md-6 col-6 advantages">
+            <div class="header-top-account d-flex justify-content-end">
+              <ul class="phone-icons d-flex justify-content-center">
+                <li>
+                  <a href="#" class="btn p-1"><i class="fa-brands fa-cc-visa"></i></a></li>
+                <li>
+                  <a href="#" class="btn p-1">
+                    <i class="fa-brands fa-cc-mastercard"></i> </a></li>
+                <li>
+                  <a href="#" class="btn p-1">
+                    <i class="fa-solid fa-sack-dollar"></i> </a></li>
+              </ul>
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    <!-- ./footerAll -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </footer>
 </html>

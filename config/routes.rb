@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :user_payments
   resources :cart_items
   resources :shopping_sessions
-
+  resources :products
   resources :product_inventories
   resources :pr_sweetnesses
   resources :pr_colors
@@ -28,12 +28,17 @@ Rails.application.routes.draw do
   resources :pr_sub_categories
   resources :pr_categories
   resources :product_categories
+  resources :users
+
   get 'cart', to: 'carts#show'
+  get 'id/:category', to: 'products#find_by_cat', as: 'find_by_cat'
+  get '/info', to: 'home#aboutcom.html'
+  get '/pay_info', to: 'home#payinfo.html'
+  get '/contacts', to: 'home#contacts.html'
+
   post 'carts/add'
   post 'carts/remove'
   post 'order_details/create_order'
-  resources :products
+
   root 'home#index'
-  # get 'app/home/index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
