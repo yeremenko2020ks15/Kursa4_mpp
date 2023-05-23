@@ -56,15 +56,15 @@ ActiveAdmin.register Product do
       f.input :description, as: :text
       f.input :SKUN
       f.input :quantity
-      f.input :pr_volume_id, as: :select, :collection => PrVolume.all
-      f.input :pr_alcohol_id, as: :select, :collection => PrAlcohol.all
-      f.input :pr_endurance_id, as: :select, :collection => PrEndurance.all
-      f.input :pr_category_id, as: :select, :collection => PrCategory.all
+      f.input :pr_volume_id, as: :searchable_select, :collection => PrVolume.all
+      f.input :pr_alcohol_id, as: :searchable_select, :collection => PrAlcohol.all
+      f.input :pr_endurance_id, as: :searchable_select, :collection => PrEndurance.all
+      f.input :pr_category_id, as: :searchable_select, :collection => PrCategory.all
       f.input :pr_sub_category_id, as: :searchable_select, :collection => PrSubCategory.all
       f.input :pr_brand_id, as: :searchable_select, :collection => PrBrand.all
-      f.input :pr_country_id, as: :select, :collection => PrCountry.all
-      f.input :pr_color_id, as: :select, :collection => PrColor.all
-      f.input :pr_sweetness_id, as: :select, :collection => PrSweetness.all
+      f.input :pr_country_id, as: :searchable_select, :collection => PrCountry.all
+      f.input :pr_color_id, as: :searchable_select, :collection => PrColor.all
+      f.input :pr_sweetness_id, as: :searchable_select, :collection => PrSweetness.all
       f.input :images, as: :file, input_html: { multiple: true }
     end
 

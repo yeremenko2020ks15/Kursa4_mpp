@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_22_200142) do
+ActiveRecord::Schema.define(version: 2023_05_08_163212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,18 +96,6 @@ ActiveRecord::Schema.define(version: 2023_05_22_200142) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_discounts_on_product_id"
-  end
-
-  create_table "models", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_models_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -209,25 +197,6 @@ ActiveRecord::Schema.define(version: 2023_05_22_200142) do
     t.index ["pr_volume_id"], name: "index_products_on_pr_volume_id"
   end
 
-  create_table "user_addresses", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "state"
-    t.string "city"
-    t.string "address_street"
-    t.integer "house_num"
-    t.integer "postal_code"
-    t.index ["user_id"], name: "index_user_addresses_on_user_id"
-  end
-
-  create_table "user_payments", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "code"
-    t.integer "cvv"
-    t.string "date"
-    t.string "name"
-    t.index ["user_id"], name: "index_user_payments_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -236,6 +205,8 @@ ActiveRecord::Schema.define(version: 2023_05_22_200142) do
     t.string "uid"
     t.string "avatar_url"
     t.string "provider"
+    t.string "city"
+    t.string "address"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -265,6 +236,4 @@ ActiveRecord::Schema.define(version: 2023_05_22_200142) do
   add_foreign_key "products", "pr_sub_categories"
   add_foreign_key "products", "pr_sweetnesses"
   add_foreign_key "products", "pr_volumes"
-  add_foreign_key "user_addresses", "users"
-  add_foreign_key "user_payments", "users"
 end
