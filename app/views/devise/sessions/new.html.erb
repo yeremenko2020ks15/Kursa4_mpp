@@ -5,41 +5,92 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<div class="container col-sm-4">
-  <h2>Log in</h2>
+<div>>
+  <div class="container col-sm-4">
+    <h2>Log in</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
-
-    <% if devise_mapping.rememberable? %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions d-flex container">
+        <div class="col-sm-6">
+          <%= button_tag(type: 'submit',:style => "background: #fdb10b; border: none;", :class => "btn btn-warning me-2 pl-3") do %>
+            Log in
+          <% end %>
+        </div>
+        <div class="container d-flex float-none">
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+          <% end %>
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= form_for "Login Google",
+                           url: omniauth_authorize_path(resource_name, provider),
+                           method: :post,
+                           data: {turbo: "false"} do |f| %>
+                <%= link_to "Login Google", omniauth_authorize_path(resource_name, provider), method: :post%>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+
+    <% end %>
+
+
+
+  </div>
+
+
+  <div class="container col-sm-4">
+    <h2>Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions d-flex container">
+        <div class="col-sm-6">
+          <%= button_tag(type: 'submit',:style => "background: #fdb10b; border: none;", :class => "btn btn-warning me-2 pl-3") do %>
+            Sign up
+          <% end %>
+        </div>
       </div>
     <% end %>
 
-    <div class="actions d-flex container">
-      <div class="col-sm-6">
-        <%= button_tag(type: 'submit',:style => "background: #fdb10b; border: none;", :class => "btn btn-warning me-2 pl-3") do %>
-          Log in
-        <% end %>
-      </div>
-      <div class="container d-flex float-none">
-        <%= render "devise/shared/links", :class => "" %>
-      </div>
 
-    </div>
-
-  <% end %>
-
-
-
+  </div>
 </div>

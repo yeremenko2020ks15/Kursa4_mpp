@@ -4,4 +4,13 @@ class HomeController < ApplicationController
     @comments = Comment.all
   end
 
+  def aboutcom
+  end
+
+  def payinfo
+  end
+
+  def contacts
+  end
+
 end

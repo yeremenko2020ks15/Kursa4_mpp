@@ -12,7 +12,13 @@ class ProductsController < ApplicationController
   end
 
   def find_by_cat
-    @products = Product.where(pr_category: PrCategory.find_by(category: params[:category]))
+    if (pr_cat = PrCategory.find_by(category: params[:category]))
+      @products = Product.where(pr_category: pr_cat)
+    elsif (pr_sub_cat = PrSubCategory.find_by(sub_category: params[:category]))
+      @products = Product.where(pr_sub_category: pr_sub_cat)
+    else
+      redirect_to '/'
+    end
   end
 
   # GET /products/new

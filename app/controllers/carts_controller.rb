@@ -37,27 +37,27 @@ class CartsController < ApplicationController
       puts '==========================================================================================================='
     end
 
-    respond_to do |format|
-      format.html do
-        redirect_to '/'
-      end
-      format.json {render json: [json.replace('cart',
-                                                   partial: 'cart/cart',
-                                                   locals: { cart: @cart }),
-                                 json.replace(@product)]}
-    end
+    # respond_to do |format|
+    #   format.html do
+    #     redirect_to '/'
+    #   end
+    #   format.json {render json: [json.replace('cart',
+    #                                                partial: 'cart/cart',
+    #                                                locals: { cart: @cart }),
+    #                              json.replace(@product)]}
+    # end
   end
 
   def remove
     Orderable.find_by(id: params[:id]).destroy
-    respond_to do |format|
-      format.html do
-        redirect_to '/'
-      end
-      format.json {render json: json.replace('cart',
-                                              partial: 'cart/cart',
-                                              locals: { cart: @cart })}
-    end
+    # respond_to do |format|
+    #   format.html do
+    #     redirect_to '/'
+    #   end
+    #   format.json {render json: json.replace('cart',
+    #                                           partial: 'cart/cart',
+    #                                           locals: { cart: @cart })}
+    # end
   end
 
   # GET /carts/1/edit

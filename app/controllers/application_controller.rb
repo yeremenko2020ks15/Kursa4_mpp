@@ -4,13 +4,9 @@ class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
   respond_to :html
 
-  before_action :set_render_cart
   before_action :initialize_cart
   respond_to :html, :json
 
-  def set_render_cart
-    @render_cart = true
-  end
 
   def initialize_cart
     if user_signed_in?
@@ -24,5 +20,6 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
 
 end
