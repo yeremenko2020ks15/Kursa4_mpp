@@ -45,29 +45,36 @@ class CartsController < ApplicationController
       puts '==========================================================================================================='
     end
 
-    # respond_to do |format|
-    #   format.html do
-    #     redirect_to '/'
-    #   end
-    #   format.json {render json: [json.replace('cart',
-    #                                                partial: 'cart/cart',
-    #                                                locals: { cart: @cart }),
-    #                              json.replace(@product)]}
-    # end
+    respond_to do |format|
+      format.html do
+        redirect_to '/'
+      end
+      format.json {render json: [json.replace('cart',
+                                                   partial: 'cart/cart',
+                                                   locals: { cart: @cart }),
+                                 json.replace(@product)]}
+    end
   end
 
   def remove
     Orderable.find_by(id: params[:id]).destroy
-    # respond_to do |format|
-    #   format.html do
-    #     redirect_to '/'
-    #   end
-    #   format.json {render json: json.replace('cart',
-    #                                           partial: 'cart/cart',
-    #                                           locals: { cart: @cart })}
-    # end
+    respond_to do |format|
+      format.html do
+        redirect_to '/'
+      end
+      format.json {render json: json.replace('cart',
+                                              partial: 'cart/cart',
+                                              locals: { cart: @cart })}
+    end
   end
 
+  def create_order
+    if @order_details.nil?
+      @order_details = OrderDetail.create(user_id: current_user.id, cart_id: @cart.id, payment_type_id: 1, payment_id: 'some_text', completed: false, rejection: false)
+      @cart.update(done: true)
+    end
+    redirect_to '/'
+  end
   # GET /carts/1/edit
   # def edit
   # end

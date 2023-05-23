@@ -38,6 +38,7 @@
       </h2>
     </div>
 
+
   <% if @cart.total == 0 %>
         <h5>Ваша корзина порожня</h5>
       <% else %>
@@ -55,29 +56,26 @@
               <div class="header-top-account d-flex justify-content-end">
                 <ul class="phone-icons d-flex justify-content-center"><li>
                   <button class="btn p-1"> <i class="fa-solid fa-plus"></i>
+
                     <%= form_with(url: carts_add_path) do |f| %>
                       <%= f.hidden_field :id, value: product.id %>
                       <%= f.number_field :quantity, value: orderable.quantity, min: 0 %>
-                      <%= f.submit "Add To Cart" %>
+                      <%= f.submit "Add To Cart", :class=>'checkout-button' %>
                     <% end %>
-
-                  </button></li>
-                  <li>
-                    <button class="btn p-1"><i class="fa-solid fa-trash"></i>
-
+                  </li>
+                    <li>
                       <%= form_with(url: carts_remove_path) do |f| %>
                         <%= f.hidden_field :id, value: orderable.id %>
-                        <%= f.submit "X" %>
+                        <%= f.submit "Delete", :class=>'checkout-button'%>
                       <% end %>
-                    </button></li></ul>
+                    </li></ul>
+                </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
+
     <% end %>
-
-
 
     <div class="checkout">
       <h3><strong>Загальна ціна:</strong> <%= @cart.total %><br></h3>
