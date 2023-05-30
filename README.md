@@ -1,24 +1,49 @@
-# README
+DedDoma
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Назва проєкту: Сайт з продажу алкоголкогольних напоїв "DedDoma"
 
-Things you may want to cover:
+Опис:
 
-* Ruby version
+Цей проект є веб-сайтом з продажу алкоголкогольних напоїв, розробленим з використанням Ruby on Rails.
+Веб-сайт надає можливість користувачам переглядати асортимент алкогольних напоїв, робити замовлення.
 
-* System dependencies
 
-* Configuration
+Основні функціональні можливості:
 
-* Database creation
+- Реєстрація та авторизація користувачів
+- Перегляд асортименту алкогольних напоїв
+- Додавання товарів до кошика
+- Редагування кількості та видалення товарів у кошику
+- Оформлення замовлення
+- Адміністративний розділ для керування товарами, замовленнями та користувачами
 
-* Database initialization
+Cередовище розробки:
 
-* How to run the test suite
+- Ruby 3.2.2
+- Ruby on Rails 6.1.2.3
+- PostgreSQL 14
+- Webpacker
 
-* Services (job queues, cache servers, search engines, etc.)
+Інструкції щодо встановлення:
 
-* Deployment instructions
+- Склонуйте репозиторій до вашого локального середовища:
+	git clone (url)
+- Зайдіть у директорію проєкту:
+	cd (path)
+- Встановіть необхідні залежності, використовуючи Bundler:
+	bundle install
+- Налаштуйте з'єднання з базою даних у файлі config/database.yml:
+	user, password, port, host, тощо.
+- Виконайте міграцію бази даних:
+	rails db:create
+	rails db:migrate
+- Запустіть сервер розробки:
+	rails s
+- Відкрийте веб-браузер і перейдіть за адресою http://localhost:3000 для перегляду сайту.
 
-* ...
+Автори:
+
+Єременко Дмитро Сергійович - https://github.com/yeremenko2020ks15
+Липовий Арсеній Вячеславович - https://github.com/LipovArs
+Нгуєн Руслан Чунгоич - https://github.com/kiyvee
+Прощенко Руслан Сергійович - https://github.com/ogGrisha
