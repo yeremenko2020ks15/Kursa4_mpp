@@ -1,6 +1,5 @@
 class OrderDetailsController < ApplicationController
   # before_action :set_order_detail, only: %i[ show edit update destroy ]
-  after_action :create_order
 
   # # GET /order_details or /order_details.json
   # def index
@@ -8,8 +7,8 @@ class OrderDetailsController < ApplicationController
   # end
 
   # GET /order_details/1 or /order_details/1.json
-  def show
-  end
+  # def show
+  # end
   #
   # # GET /order_details/new
   # def new

@@ -2,8 +2,12 @@
 
 one:
   product: one
+  user: one
+  rating: 1
   comment: MyString
 
 two:
   product: two
+  user: two
+  rating: 1
   comment: MyString

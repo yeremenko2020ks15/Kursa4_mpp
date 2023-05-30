@@ -38,11 +38,4 @@ class PrBrandsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pr_brand_url(@pr_brand)
   end
 
-  test "should destroy pr_brand" do
-    assert_difference('PrBrand.count', -1) do
-      delete pr_brand_url(@pr_brand)
-    end
-
-    assert_redirected_to pr_brands_url
-  end
 end

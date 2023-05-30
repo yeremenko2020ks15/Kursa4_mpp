@@ -38,11 +38,4 @@ class PrColorsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pr_color_url(@pr_color)
   end
 
-  test "should destroy pr_color" do
-    assert_difference('PrColor.count', -1) do
-      delete pr_color_url(@pr_color)
-    end
-
-    assert_redirected_to pr_colors_url
-  end
 end

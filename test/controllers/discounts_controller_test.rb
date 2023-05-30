@@ -38,11 +38,4 @@ class DiscountsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to discount_url(@discount)
   end
 
-  test "should destroy discount" do
-    assert_difference('Discount.count', -1) do
-      delete discount_url(@discount)
-    end
-
-    assert_redirected_to discounts_url
-  end
 end

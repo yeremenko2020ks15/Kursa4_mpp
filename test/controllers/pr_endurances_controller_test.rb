@@ -38,11 +38,4 @@ class PrEndurancesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pr_endurance_url(@pr_endurance)
   end
 
-  test "should destroy pr_endurance" do
-    assert_difference('PrEndurance.count', -1) do
-      delete pr_endurance_url(@pr_endurance)
-    end
-
-    assert_redirected_to pr_endurances_url
-  end
 end

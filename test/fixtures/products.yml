@@ -5,29 +5,25 @@ one:
   price_for_client: 1.5
   description: MyString
   SKUN: MyString
-  alc_strength: 1
-  alc_endurance: 1
+  pr_alcohol: 1
+  pr_endurance: 1
   pr_category: one
   pr_sub_category: one
   pr_brand: one
   pr_country: one
-  pr_classification: one
   pr_color: one
   pr_sweetness: one
-  accessories: false
 
 two:
   pr_name: MyString
   price_for_client: 1.5
   description: MyString
   SKUN: MyString
-  alc_strength: 1
-  alc_endurance: 1
+  pr_alcohol: 1
+  pr_endurance: 1
   pr_category: two
   pr_sub_category: two
   pr_brand: two
   pr_country: two
-  pr_classification: two
   pr_color: two
   pr_sweetness: two
-  accessories: false

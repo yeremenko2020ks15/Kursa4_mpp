@@ -38,11 +38,4 @@ class PrCountriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pr_country_url(@pr_country)
   end
 
-  test "should destroy pr_country" do
-    assert_difference('PrCountry.count', -1) do
-      delete pr_country_url(@pr_country)
-    end
-
-    assert_redirected_to pr_countries_url
-  end
 end

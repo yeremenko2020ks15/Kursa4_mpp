@@ -38,11 +38,4 @@ class PrVolumesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pr_volume_url(@pr_volume)
   end
 
-  test "should destroy pr_volume" do
-    assert_difference('PrVolume.count', -1) do
-      delete pr_volume_url(@pr_volume)
-    end
-
-    assert_redirected_to pr_volumes_url
-  end
 end

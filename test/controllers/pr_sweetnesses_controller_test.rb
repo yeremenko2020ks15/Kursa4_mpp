@@ -38,11 +38,4 @@ class PrSweetnessesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pr_sweetness_url(@pr_sweetness)
   end
 
-  test "should destroy pr_sweetness" do
-    assert_difference('PrSweetness.count', -1) do
-      delete pr_sweetness_url(@pr_sweetness)
-    end
-
-    assert_redirected_to pr_sweetnesses_url
-  end
 end

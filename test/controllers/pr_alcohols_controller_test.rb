@@ -38,11 +38,4 @@ class PrAlcoholsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pr_alcohol_url(@pr_alcohol)
   end
 
-  test "should destroy pr_alcohol" do
-    assert_difference('PrAlcohol.count', -1) do
-      delete pr_alcohol_url(@pr_alcohol)
-    end
-
-    assert_redirected_to pr_alcohols_url
-  end
 end

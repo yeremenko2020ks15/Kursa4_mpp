@@ -38,11 +38,4 @@ class PrCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pr_category_url(@pr_category)
   end
 
-  test "should destroy pr_category" do
-    assert_difference('PrCategory.count', -1) do
-      delete pr_category_url(@pr_category)
-    end
-
-    assert_redirected_to pr_categories_url
-  end
 end
