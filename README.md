@@ -44,6 +44,9 @@ Cередовище розробки:
 Автори:
 
 Єременко Дмитро Сергійович - https://github.com/yeremenko2020ks15
+
 Липовий Арсеній Вячеславович - https://github.com/LipovArs
+
 Нгуєн Руслан Чунгоич - https://github.com/kiyvee
+
 Прощенко Руслан Сергійович - https://github.com/ogGrisha
