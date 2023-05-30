@@ -49,4 +49,4 @@ Cередовище розробки:
 
 Нгуєн Руслан Чунгоич - https://github.com/kiyvee
 
-Прощенко Руслан Сергійович - https://github.com/ogGrisha
+Прощенко Руслан Сергійович - https://github.com/Tnnntick
